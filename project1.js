@@ -1,6 +1,6 @@
 /* ====GAME BOARD==== (reference W3 schools, CSS Tricks, MDN, www.taniarascia.com and stackoverflow)*/
 
-//Set of Cards
+// Set of Cards
 
 const cardsArray = [{
     'name': 'number1',
@@ -94,7 +94,7 @@ const strikeCount = document.querySelector('#strike-count');
 const winCount = document.querySelector('#win-count');
 
 const displayScore = (htmlElement, score) => {
-  htmlElement.innerText = parseInt(score);
+  htmlElement.innerHTML = (score);
 }
 
 const updateWins = () => {
@@ -212,3 +212,7 @@ table.addEventListener('click', event => {
 }
 
 });
+
+//Timer
+
+
