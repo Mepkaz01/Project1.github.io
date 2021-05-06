@@ -21,19 +21,23 @@ Thursday 5/6: Page is looking pretty good. Continue to work on my scorebox (used
 Friday 5/7: Presentation Day!
 
 What would you do differently?
+
 What are you most proud of?
+
 What would you do next?
+
 How did you plan your project?
+
 What did you learn?
 
-Some new cool functionality I learned during this project and I know it will be very useful in the future:
+Some new cool functionality and properties I learned during this project and I know it will be very useful in the future:
 
 daataset property = provides read/write access to a custom data attribute to allow exchange of information.
 localStorage = allows to save key/value pairs in a web browser. Data will not be deleted when the browser is closed. 
 backface-visibility = CSS propery sets if the back face of an element is visilbe or not (choice between visible or hidden) to user upon page load.
 transform = CSS property lets you rotate, scale, skew or translate an element. 
 transition = CSS property enables to define the transition between two states of an element. Choices: transition property, transition duration, transition timing, transtion delay
-    
+
 
 
 
