@@ -97,6 +97,17 @@ const displayScore = (htmlElement, score) => {
   htmlElement.innerText = parseInt(score);
 }
 
+const updateWins = () => {
+    if (!totalWins) {
+      if (localStorage.getItem('totalWins')) {
+        totalWins = localStorage.getItem('totalWins');
+      } else {
+        totalWins = 0;
+      }      
+    }
+    displayScore(winCount, totalWins);
+};
+
 // Create variables for each play
 
 let count = 0; // keeps track of card clicks
@@ -107,39 +118,40 @@ let delay = 1300;
 let playerScore = 0;
 let playerStrikes = 0;
 let totalWins;
+updateWins();
 playerScore = 0;
 playerStrikes = 0;
-displayScore(strikeCount, playerStrikes);
+// displayScore(strikeCount, playerStrikes);
 
 // Creates class for match in CSS
 
 const match = () => {
+    firstCard = '';
+    secondCard = '';
+    count = 0;
+    firstFlip = null;  
   const chosen = document.querySelectorAll('.chosen');
   chosen.forEach(flipCard => {
     flipCard.classList.add('match');
+    flipCard.classList.remove('chosen');
     console.log('match!')
     playerScore += 1;
-    
+        
   });
+  win();
 };
 
 const win = () => {
-    if (playerScore >= 10); 
+    console.log(playerScore)
+    if (playerScore >= 24) {
     totalWins += 1;
     displayScore(winCount, totalWins);
     console.log('you win!');
+    localStorage.setItem('totalWins', totalWins);
   }
+}
   
-  const updateWins = () => {
-    if (!totalWins) {
-      if (localStorage.getItem('totalWins')) {
-        totalWins = localStorage.getItem('totalWins');
-      } else {
-        totalWins = 0;
-      }
-      displayScore(winCount, totalWins);
-    }
-};
+  
 
 // Create function to reset play for a strike
 
@@ -192,9 +204,9 @@ table.addEventListener('click', event => {
       if (firstCard === secondCard) {
         setTimeout(match, delay);
                                       
-      }
+      } else { 
       setTimeout(resetFlips, delay);
-                       
+      }                 
     }
     firstFlip = clicked;
 }
