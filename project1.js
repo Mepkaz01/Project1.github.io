@@ -87,33 +87,15 @@ gameTable.forEach(item => {
   flipCard.appendChild(back);
 });
 
-// Score Box
+// Score Box (reference: example from Prject 1 readme: https://cardmatch.surge.sh/)
 
 const scoreBox = document.querySelector('#scorebox');
 const strikeCount = document.querySelector('#strike-count');
 const winCount = document.querySelector('#win-count');
 
 const displayScore = (htmlElement, score) => {
-  htmlElement.innerText = score;
+  htmlElement.innerText = parseInt(score);
 }
-
-const win = () => {
-  if (playerScore >= 10); 
-  totalWins = Number(totalWins) + 1;
-  displayScore(winCount, totalWins);
-  console.log('you win!');
-}
-
-const updateWins = () => {
-  if (!totalWins) {
-    if (localStorage.getItem('totalWins')) {
-      totalWins = localStorage.getItem('totalWins');
-    } else {
-      totalWins = 0;
-    }
-    displayScore(winCount, totalWins);
-  }
-};
 
 // Create variables for each play
 
@@ -122,8 +104,8 @@ let firstCard = '';
 let secondCard = '';
 let firstFlip = null;
 let delay = 1300;
-let playerScore;
-let playerStrikes;
+let playerScore = 0;
+let playerStrikes = 0;
 let totalWins;
 playerScore = 0;
 playerStrikes = 0;
@@ -135,7 +117,28 @@ const match = () => {
   const chosen = document.querySelectorAll('.chosen');
   chosen.forEach(flipCard => {
     flipCard.classList.add('match');
+    console.log('match!')
+    playerScore += 1;
+    
   });
+};
+
+const win = () => {
+    if (playerScore >= 10); 
+    totalWins += 1;
+    displayScore(winCount, totalWins);
+    console.log('you win!');
+  }
+  
+  const updateWins = () => {
+    if (!totalWins) {
+      if (localStorage.getItem('totalWins')) {
+        totalWins = localStorage.getItem('totalWins');
+      } else {
+        totalWins = 0;
+      }
+      displayScore(winCount, totalWins);
+    }
 };
 
 // Create function to reset play for a strike
@@ -150,6 +153,9 @@ const resetFlips = () => {
   chosen.forEach(flipCard => {
     flipCard.classList.remove('chosen');
   });
+  playerStrikes += 1
+    displayScore (strikeCount, playerStrikes);
+
 };
 
 // Add Event Listener to flip cards on click
@@ -179,21 +185,18 @@ table.addEventListener('click', event => {
       secondCard = clicked.parentNode.dataset.name; // this defines the secondCard value
       console.log(secondCard);
       clicked.parentNode.classList.add('chosen');
-      playerStrikes += 1
-      displayScore (strikeCount, playerStrikes);
-    }    
-
-
-    if (firstCard && secondCard) {
+     
+    }   
+    
+      if (firstCard && secondCard) {
       if (firstCard === secondCard) {
         setTimeout(match, delay);
-        console.log('match!')
-        playerScore += 1;        
+                                      
       }
       setTimeout(resetFlips, delay);
-           
+                       
     }
     firstFlip = clicked;
-  }
+}
 
 });
