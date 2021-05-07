@@ -123,6 +123,27 @@ playerScore = 0;
 playerStrikes = 0;
 // displayScore(strikeCount, playerStrikes);
 
+//Timer
+
+// let second = 0;
+// let minute = 0;
+// const timer = document.querySelector('#timer');
+// const interval;
+// function startTimer () {
+//     interval = setInterval(function() {
+//         timer.innterHTML = (minute, second);
+//         second++;
+//         if (second == 60) {
+//             minute++;
+//             second = 0;
+//         }
+//         if(minute == 60) {
+//             hour++;
+//             minute = 0;
+//         }
+//     },1000);
+// }
+
 // Creates class for match in CSS
 
 const match = () => {
@@ -148,10 +169,10 @@ const win = () => {
     displayScore(winCount, totalWins);
     console.log('you win!');
     localStorage.setItem('totalWins', totalWins);
+    // timer.innerHTML = "0 mins 0 secs";
+    // clearInterval(interval);
   }
 }
-  
-  
 
 // Create function to reset play for a strike
 
@@ -175,6 +196,12 @@ const resetFlips = () => {
 table.addEventListener('click', event => {
 
   const clicked = event.target;
+//   if(count == 1){
+//       second = 0;
+//       minute = 0;
+//       hour = 0;
+//       startTimer();
+//   }
 
 // Statements to add logic for chosen and chosen then run resetFlips function or chosen and match to run match function to each card placeholder
 
@@ -209,10 +236,9 @@ table.addEventListener('click', event => {
       }                 
     }
     firstFlip = clicked;
+
 }
 
 });
-
-//Timer
 
 
